@@ -1,0 +1,1369 @@
+{
+	"info": {
+		"_postman_id": "c064c3dc-8f83-4b6b-b66e-359bd0f4976b",
+		"name": "Proyecto final moviles 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6777473"
+	},
+	"item": [
+		{
+			"name": "dueño",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"TOKEN\", pm.response.json().access_token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jperez@test.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/auth/clientlogin",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"auth",
+								"clientlogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Juan Perez\",\r\n    \"email\": \"jperez@test.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/auth/clientregister",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"auth",
+								"clientregister"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dueño loggeado",
+			"item": [
+				{
+					"name": "agregar direccion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"is_available\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/addresses",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener direcciones",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/addresses",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar dirección",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/addresses/2",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"addresses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subir foto dueño",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|Ao6IFuXQiiaw5WRRml8ZVQjUGrxrM6T3XOIUf0nacab8bb4a",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "postman-cloud:///1ef03576-c554-43a0-b751-b3c3cb4f9a65"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/owners/photo",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"owners",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "paseadores",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"TOKEN\", pm.response.json().token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"juanpaseador@test.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/auth/walkerlogin",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"auth",
+								"walkerlogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Juan Paseador\",\r\n    \"email\": \"juanpaseador2@test.com\",\r\n    \"password\": \"123456\",\r\n    \"price_hour\": \"10 pesos y una sodita\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/auth/walkerregister",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"auth",
+								"walkerregister"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "paseador loggeado",
+			"item": [
+				{
+					"name": "subir foto paseador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|Ao6IFuXQiiaw5WRRml8ZVQjUGrxrM6T3XOIUf0nacab8bb4a",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1ef03576-c554-43a0-b751-b3c3cb4f9a65",
+										"/C:/Users/jmacb/Documentos/Mega/Fotos/2023-07-18 11.28.35.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walkers/photo",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walkers",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enviar ubicación paseador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"latitude\": \"-17.7690539\",\r\n    \"longitude\": \"-63.1860299\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walkers/location",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walkers",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activar paseador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"is_available\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walkers/availability",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walkers",
+								"availability"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "desactivar paseador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"is_available\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walkers/availability",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walkers",
+								"availability"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "aceptar paseo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks/1/accept",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"1",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subir foto paseo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "postman-cloud:///1ef03576-c554-43a0-b751-b3c3cb4f9a65"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walks/1/photo",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"1",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rechazar paseo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walks/1/reject",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"1",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "iniciar paseo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks/2/start",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"2",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "finalizar paseo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks/2/end",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"2",
+								"end"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get paseos aceptados",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks/accepted",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"accepted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get paseos pendientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks/pending",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"pending"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "mascotas",
+			"item": [
+				{
+					"name": "lista de mascotas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/pets",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertar mascota",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|Ao6IFuXQiiaw5WRRml8ZVQjUGrxrM6T3XOIUf0nacab8bb4a",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Leonardo\",\r\n    \"type\": \"Gato\",\r\n    \"notes\": \"Gato rayado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/pets",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar mascota",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Leonardo\",\r\n    \"type\": \"Gato\",\r\n    \"notes\": \"Gato rayado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/pets/11",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"pets",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar mascota",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/pets/3",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"pets",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subir foto mascota",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|Ao6IFuXQiiaw5WRRml8ZVQjUGrxrM6T3XOIUf0nacab8bb4a",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1ef03576-c554-43a0-b751-b3c3cb4f9a65",
+										"/C:/Users/jmacb/Documentos/Mega/Fotos/2023-07-18 11.28.35.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/pets/1/photo",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"pets",
+								"1",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "paseos",
+			"item": [
+				{
+					"name": "lista de paseos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get paseadores cercanos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"latitude\": \"-17.7683908\",\r\n    \"longitude\": \"-63.1855858\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walkers/nearby",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walkers",
+								"nearby"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get paseador por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"latitude\": \"-17.7683908\",\r\n    \"longitude\": \"-63.1855858\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walkers/2",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walkers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertar paseo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"walker_id\": \"2\",\r\n    \"pet_id\": \"1\",\r\n    \"scheduled_at\": \"2025-11-27 10:59\",\r\n    \"duration_minutes\": \"50\",\r\n    \"user_address_id\": \"1\",\r\n    \"notes\": \"Traer churu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walks",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get paseos por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks/2",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get fotos del paseo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_BASE}}/walks/2/photos",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"2",
+								"photos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dejar un review del paseo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 5,\r\n    \"comment\": \"Que buen servicio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/walks/2/review",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"walks",
+								"2",
+								"review"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Obtener info del usuario actual",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL_BASE}}/me",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL_BASE",
+			"value": ""
+		},
+		{
+			"key": "TOKEN",
+			"value": ""
+		}
+	]
+}
